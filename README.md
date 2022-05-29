@@ -11,7 +11,7 @@ If Lead.ProductInterest__c is equal to any Campaign.Name, then the Lead will be 
 The below highlights the relationship between the three Salesforce tables.
 <img src="assets/imgs/schema-builder-member.png" alt="schema-builder">
 
-### Get Start
+### Get Started
 
 - clone [GitHub Repo](https://github.com/andrewcircelli/assign-leads-to-campaign.git)
 - use command ```npm init -y ``` to install dependencies
