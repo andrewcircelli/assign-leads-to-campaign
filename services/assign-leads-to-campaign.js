@@ -9,26 +9,23 @@ async function returnLocalLeads() {
   let leads = await jsonModule();
   return leads;
 }
-
-returnLocalLeads();
+const queryLead = (req, res, next) =>
+  conn
+    .query(`SELECT Id, Name FROM Lead WHERE id = '${req.searchId}'`)
+    .on("record", (leadRecord) => {
+      res.send(leadRecord);
+      next();
+    })
+    .on("error", (err) => {
+      res.status(404).send(err);
+    });
 
 module.exports = function (app) {
-  // const leads = await returnLocalLeads();
-  // const searchId = leads.records[0].id;
-  app.get("/api/assign-leads", async (req, res) => {
+  app.get("/api/assign-leads", async (req, res, next) => {
     const leads = await returnLocalLeads();
-    const searchId = leads.records[0].Id;
+    req.searchId = leads.records[0].Id;
     conn = await connectionCheck();
-    conn.query(
-      `SELECT Id, Name FROM Lead WHERE id = '${searchId}'`,
-      (err, leads) => {
-        if (err) {
-          console.log(err);
-          res.status(404).send(err);
-        }
-        res.status(200).send(leads);
-      }
-    );
+    queryLead(req, res, next);
   });
 };
 
