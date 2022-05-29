@@ -34,5 +34,6 @@ The below highlights the relationship between the three Salesforce tables.
 
 - Functionality to read across the entire ```leads.json ``` file and not just the first lead record.
 - Pull lead information from other sources instead of local file system (e.g. db that is synchronize with Salesforce Org or scheduled API calls).
-- Rethink the way the query and CRUD functions of ```assign-leads-campaign``` are configured. I do not like the nested function or using the ```req {}``` to store varibles. 
-- Standard Salesforce automation tools could probably do this
+- Rethink the way the query and CRUD functions of ```assign-leads-campaign``` are configured. I do not like the nested function or using the ```req {}``` to store varibles.
+- More helpful error handling responses, e.g., when trying to assign the same Lead to the same Campaign.
+- Standard Salesforce automation tools could probably do this.
