@@ -16,7 +16,7 @@ const app = express();
 app.get("/", (req, res) => {
   res.send("<h1> Assign Leads to Campaigns Service at api/assign-leads</h1>");
 });
-require("./services/assign-leads-to-campaign")(app);
+require("./routes/api-routes.js")(app);
 
 // Error Handling route for unknown endpoints
 app.use((req, res, next) => {
