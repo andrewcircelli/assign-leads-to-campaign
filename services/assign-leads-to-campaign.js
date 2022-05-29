@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const connectionCheck = require("../config/config");
 const jsonModule = require("./fs-module");
 // Return record from fs function
@@ -6,23 +7,28 @@ const jsonModule = require("./fs-module");
 
 async function returnLocalLeads() {
   let leads = await jsonModule();
-  console.log(leads);
   return leads;
 }
 
 returnLocalLeads();
 
 module.exports = function (app) {
-  app.get("/api/account/assign-leads", (req, res) => {
-    conn.sobject("Account").retrieve(req.params.id, (err, account) => {
-      if (err) {
-        console.log(err);
-        res
-          .status(404)
-          .send(`<h1> Invalid Request Made to api/account/:id endpoint </h1>`);
+  // const leads = await returnLocalLeads();
+  // const searchId = leads.records[0].id;
+  app.get("/api/assign-leads", async (req, res) => {
+    const leads = await returnLocalLeads();
+    const searchId = leads.records[0].Id;
+    conn = await connectionCheck();
+    conn.query(
+      `SELECT Id, Name FROM Lead WHERE id = '${searchId}'`,
+      (err, leads) => {
+        if (err) {
+          console.log(err);
+          res.status(404).send(err);
+        }
+        res.status(200).send(leads);
       }
-      res.status(200).send(account);
-    });
+    );
   });
 };
 
