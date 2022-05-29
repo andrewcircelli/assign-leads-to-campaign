@@ -21,8 +21,12 @@ The below highlights the relationship between the three Salesforce tables.
   - SF_USERNAME=
   - SF_PASSWORD=
   - SF_TOKEN=
+- update leads.json to valid leads from your Salesforce instance (note only first element in array is being considered in this version)
+- ensure you have an active Campaign record with a Name equal to a valid picklist value of Lead.ProductInterest__c
 - use command ```npm run start:dev``` to spin up server on localhost if you are further developing OR
 - use command ```npm run start``` to spin up server on localhost
+- navigate to root of localhost and ```server.js home page logic``` will init
+- navigate to ```/api/assign-leads``` of localhost and ```server.js lead assignment logic``` will init
 
 ### Primary Modules
 
