@@ -1,0 +1,13 @@
+{
+  "records": [
+      {
+          "attributes": {
+              "type": "Lead",
+              "url": "/services/data/v42.0/sobjects/Lead/00Q8a00001qbrQyEAI"
+          },
+          "Id": "00Q8a00001qbrQyEAI",
+          "Name": "Ms Sandra Eberhard",
+          "ProductInterest__c": "GC5000 series"
+      }
+  ]
+}
